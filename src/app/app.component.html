@@ -18,7 +18,8 @@
 
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 *ngIf="userId == undefined " class="panel-title">Please Sign In</h3>
+                    <h3 *ngIf="!isRegister" class="panel-title">Please Sign In</h3>
+                    <h3 *ngIf="isRegister" class="panel-title">Register</h3>
                     <h3 *ngIf="userId != undefined " class="panel-title">Login Success</h3>
                 </div>
                 <div *ngIf="error != undefined " class="panel-body">
@@ -40,7 +41,8 @@
                         <!-- Change this to a button or input when using this as a form -->
                     </fieldset>
                     <div *ngIf="isRegister == true">
-                        <a (click)="registerUser();" class="btn btn-lg btn-success btn-block">Register</a>
+                        <a (click)="registerUser();" class="btn btn-lg btn-success btn-block">Register User</a>
+                        <a (click)="cancel();" class="btn btn-lg btn-danger btn-block">Cancel</a>
                     </div>
                     <div *ngIf="isRegister == false">
                         <a (click)="login(1);" class="btn btn-lg btn-success btn-block">Login</a>

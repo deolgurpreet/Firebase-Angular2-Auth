@@ -95,6 +95,11 @@ export class AppComponent {
     this.isRegister = true;
   }
 
+  cancel() {
+    this.isRegister = false;
+  }
+
+
   registerUser() {
     this.loginService.registerUser(this.email, this.password).then(result => {
       this.isRegister = false;

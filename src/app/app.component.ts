@@ -38,7 +38,7 @@ export class AppComponent {
         break;
       case TWITTER:
         this.loginService.twitterLogin().then((user) => {
-          console.log(user);
+          console.log(user.twitter);
           this.userId = user.uid;
         }).catch((error) => {
           this.errorHandler(error);
@@ -46,7 +46,7 @@ export class AppComponent {
         break;
       case FACEBOOK:
         this.loginService.facebookLogin().then((user) => {
-          console.log(user);
+          console.log(user.facebook);
           this.userId = user.uid;
         }).catch((error) => {
           this.errorHandler(error);
@@ -54,7 +54,7 @@ export class AppComponent {
         break;
       case GOOGLE:
         this.loginService.googleLogin().then((user) => {
-          console.log(user);
+          console.log(user.google);
           this.userId = user.uid;
         }).catch((error) => {
           this.errorHandler(error);
@@ -62,7 +62,7 @@ export class AppComponent {
         break;
       case GITHUB:
         this.loginService.githubLogin().then((user) => {
-          console.log(user);
+          console.log(user.github);
           this.userId = user.uid;
         }).catch((error) => {
           this.errorHandler(error);

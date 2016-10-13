@@ -3,12 +3,20 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { AuthProviders } from 'angularfire2';
 import { AuthMethods } from 'angularfire2';
 import { EmailPasswordCredentials } from 'angularfire2/auth';
+import { FirebaseAuthState } from 'angularfire2';
 
 @Injectable()
 export class LoginService {
+    authState: FirebaseAuthState;
     constructor(
         private angularFire: AngularFire) {
+        this.angularFire.auth.subscribe(state => {
+            this.authState = state;
+        });
+    }
 
+    getAuthState() : FirebaseAuthState {
+        return this.authState;
     }
 
     googleLogin() {

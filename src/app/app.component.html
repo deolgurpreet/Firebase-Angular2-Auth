@@ -1,0 +1,72 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Firebase Authentication (Angular 2) </a>
+        </div>
+        <div class="pull-right">
+            <ul class="nav navbar-nav">
+                <li *ngIf="userId == undefined "><button (click)="register()" class="btn navbar-btn btn-primary" name="registerUser" id="registerUser" value="Register User">Register</button></li>
+                <li *ngIf="userId != undefined "><button (click)="logout()" class="btn navbar-btn btn-danger" name="logout" id="logout" value="Log Out">Log Out</button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <p class="download"> <a href="https://github.com/totororo/FirebaseAuth-Angular2">Download the source code</a></p>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 *ngIf="userId == undefined " class="panel-title">Please Sign In</h3>
+                    <h3 *ngIf="userId != undefined " class="panel-title">Login Success</h3>
+                </div>
+                <div *ngIf="error != undefined " class="panel-body">
+                    <div class="alert alert-warning">{{ error.message }} </div>
+                </div>
+                <div *ngIf="userId != undefined " class="panel-body">
+                    <div class="alert alert-success">Login Success.
+                        <p>User ID: {{ userId }} </p>
+                    </div>
+                </div>
+                <div class="panel-body" *ngIf="userId == undefined">
+                    <fieldset>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="E-mail" name="email" type="email" (change)="email=$event.target.value" value="demo@demo.com" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Password" name="password" type="password" value="demodemo" (change)="password=$event.target.value">
+                        </div>
+                        <!-- Change this to a button or input when using this as a form -->
+                    </fieldset>
+                    <div *ngIf="isRegister == true">
+                        <a (click)="registerUser();" class="btn btn-lg btn-success btn-block">Register</a>
+                    </div>
+                    <div *ngIf="isRegister == false">
+                        <a (click)="login(1);" class="btn btn-lg btn-success btn-block">Login</a>
+                        <a (click)="login(2);" class="btn btn-social btn-twitter btn-block">
+                            <span class="fa fa-twitter"></span>Sign in with Twitter
+                        </a>
+                        <a (click)="login(3);" class="btn btn-social btn-facebook btn-block">
+                            <span class="fa fa-facebook"></span> Sign in with Facebook
+                        </a>
+                        <a (click)="login(4);" class="btn btn-social btn-google btn-block">
+                            <span class="fa fa-google"></span> Sign in with Google
+                        </a>
+                        <a (click)="login(5);" class="btn btn-social btn-github btn-block">
+                            <span class="fa fa-github"></span> Sign in with GitHub
+                        </a>
+                        <a (click)="login(6);" class="btn btn-social btn-adn btn-block"><span class="fa fa-user-times"></span>匿名</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted"><a href="https://firebase.google.com/" target="_blank">Copyright Firebase</a>
+            <a href="https://angular.io" target="_blank"> Copyright Angualr </a>
+        </p>
+    </div>
+</footer>

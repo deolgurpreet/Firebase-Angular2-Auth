@@ -15,63 +15,61 @@ const ANONYMOUS = 6;
 })
 
 export class AppComponent {
+  titleMessage = "";
 
   userId = undefined;
+  displayName = undefined;
+  photoURL = undefined;
+
   email = "demo@demo.com";
   password = "demodemo";
   error = undefined;
   isRegister = false;
   constructor(private loginService: LoginService) {
+    this.titleMessage = "Please Sign In";
   }
 
   login(index: number) {
     this.error = undefined;
-    console.log(" login :" + index);
     switch (index) {
       case MAIL:
         this.loginService.mailLogin(this.email, this.password).then((user) => {
-          console.log(user);
-          this.userId = user.uid;
+          this.setData(user);
         }).catch((error) => {
           this.errorHandler(error);
         });
         break;
       case TWITTER:
         this.loginService.twitterLogin().then((user) => {
-          console.log(user.twitter);
-          this.userId = user.uid;
+          this.setData(user);
         }).catch((error) => {
           this.errorHandler(error);
         });
         break;
       case FACEBOOK:
         this.loginService.facebookLogin().then((user) => {
-          console.log(user.facebook);
-          this.userId = user.uid;
+          this.setData(user);
         }).catch((error) => {
           this.errorHandler(error);
         });
         break;
       case GOOGLE:
         this.loginService.googleLogin().then((user) => {
-          console.log(user.google);
-          this.userId = user.uid;
+          this.setData(user);
         }).catch((error) => {
           this.errorHandler(error);
         });
         break;
       case GITHUB:
         this.loginService.githubLogin().then((user) => {
-          console.log(user.github);
-          this.userId = user.uid;
+          this.setData(user);
         }).catch((error) => {
           this.errorHandler(error);
         });
         break;
       case ANONYMOUS:
         this.loginService.anonymousLogin().then((user) => {
-          console.log(user);
-          this.userId = user.uid;
+          this.setData(user);
         }).catch((error) => {
           this.errorHandler(error);
         });
@@ -79,6 +77,13 @@ export class AppComponent {
       default:
         break;
     }
+  }
+
+  setData(user) {
+    this.titleMessage = "Login Success.";
+    this.userId = user.uid;
+    this.displayName = user.auth.displayName;
+    this.photoURL = user.auth.photoURL;
   }
 
   logout() {
@@ -89,20 +94,23 @@ export class AppComponent {
   errorHandler(error) {
     this.error = error;
     console.log(error);
+    this.titleMessage = "ERROR";
   }
 
   register() {
     this.isRegister = true;
+    this.titleMessage = "Register Form";
   }
 
   cancel() {
     this.isRegister = false;
+    this.titleMessage = "Please Sign In";
   }
-
 
   registerUser() {
     this.loginService.registerUser(this.email, this.password).then(result => {
       this.isRegister = false;
+      this.titleMessage = "Register Success.";
       console.log("register success: " + result);
     }).catch(error => {
       this.errorHandler(error);

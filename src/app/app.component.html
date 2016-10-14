@@ -18,16 +18,16 @@
 
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 *ngIf="!isRegister" class="panel-title">Please Sign In</h3>
-                    <h3 *ngIf="isRegister" class="panel-title">Register</h3>
-                    <h3 *ngIf="userId != undefined " class="panel-title">Login Success</h3>
+                    <h3 class="panel-title"> {{ titleMessage}} </h3>
                 </div>
                 <div *ngIf="error != undefined " class="panel-body">
                     <div class="alert alert-warning">{{ error.message }} </div>
                 </div>
                 <div *ngIf="userId != undefined " class="panel-body">
                     <div class="alert alert-success">Login Success.
-                        <p>User ID: {{ userId }} </p>
+                        <p>Display Name: {{ displayName }} </p>
+                        <img class="avatar" src="{{ photoURL }}" />
+                        <p>{{ userId }}</p>
                     </div>
                 </div>
                 <div class="panel-body" *ngIf="userId == undefined">

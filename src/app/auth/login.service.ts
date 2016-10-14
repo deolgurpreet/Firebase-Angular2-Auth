@@ -15,7 +15,7 @@ export class LoginService {
         });
     }
 
-    getAuthState() : FirebaseAuthState {
+    getAuthState(): FirebaseAuthState {
         return this.authState;
     }
 
